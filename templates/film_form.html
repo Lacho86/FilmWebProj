@@ -1,0 +1,58 @@
+{% extends 'glowny.html' %}
+{% load bootstrap %}
+{% block tytul %} Dodaj/Edytuj film {% endblock %}
+
+{% block strona %} 
+<div class="card" style="width: 32rem; float: left; margin-right: 1rem;" >
+    <div class="card-body">
+        {% if nowy %}
+            <h5 class="card-title">Nowy film</h5>
+        {% else %}
+            <h5 class="card-title">Edytuj film</h5>
+        {% endif %}
+        
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        {{ form_dodatkwe|bootstrap }}
+            {% if nowy %}
+                <button type="submit" class="btn btn-primary" >Nowy Film</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Edytuj film</button>
+            {% endif %}
+    </form>
+    </div>
+  </div>
+
+  {% for aktor in aktorzy %}
+    <h4> {{ aktor.imie }} {{ aktor.nazwisko }}</h4>
+  {% endfor %}
+
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Dodaj aktora</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_aktorzy|bootstrap }}
+            <button type="submit" class="btn btn-primary" >Dodaj</button>
+    </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Oceń film</h5>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form_ocena|bootstrap }}
+            <button type="submit" class="btn btn-primary" >Oceń</button>
+    </form>
+    </div>
+  </div>
+
+  {% for ocena in oceny %}
+    <h4>Gwiazdki: {{ocena.gwiazdki}}</h4>
+    <p>{{ocena.recenzja}}</p>
+  {% endfor %}
+    <a href="{% url 'wszystkie_filmy' %}" class="btn btn-danger">Cofnij <i class="fas fa-undo-alt"></i></a>
+{% endblock %}

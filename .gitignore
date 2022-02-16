@@ -1,0 +1,5 @@
+# ignorowane pliki
+/moje_media
+*.sqlite3
+*pyc
+/moje_static

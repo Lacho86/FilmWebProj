@@ -1,0 +1,14 @@
+body{
+    padding: 2rem;
+}
+.film_plakat {
+    width: 10px;
+    height: auto;
+    float: left;
+}
+.film-icon {
+    font-size: 1.6rem;
+}
+.opis {
+    margin-left: 15px;
+}
